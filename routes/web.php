@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TingkatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('panel.base');
 });
+
+Route::post('/storetingkat', [TingkatController::class, 'storetingkat'])->name('storetingkat');
+
+Route::get('/tingkat', [TingkatController::class, 'tingkat'])->name('tingkat');
