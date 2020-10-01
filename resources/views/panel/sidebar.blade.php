@@ -42,15 +42,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link {{ request()->is('tingkat') ? 'active' : '' }}">
+                <a href="{{route('tingkat')}}" class="nav-link {{ request()->is('tingkat') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tingkat</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('pesertadidik')}}" class="nav-link {{ request()->is('pesertadidik') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
+                  <p>Peserta Didik</p>
                 </a>
               </li>
             </ul>

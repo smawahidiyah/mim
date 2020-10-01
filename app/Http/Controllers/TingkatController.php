@@ -10,7 +10,6 @@ class TingkatController extends Controller
     public function storetingkat(Request $request)
     {
         $store = new Tingkat;
-
         $store->tingkat = $request->tingkat;
         $store->save();
 

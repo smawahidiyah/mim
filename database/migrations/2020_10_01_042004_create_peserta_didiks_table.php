@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTingkatsTable extends Migration
+class CreatePesertaDidiksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateTingkatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tingkats', function (Blueprint $table) {
+        Schema::create('peserta_didiks', function (Blueprint $table) {
             $table->id();
-            $table->string('tingkat')->nullable();
+            $table->integer('NIPD')->nullable();
+            $table->string('namapd', 200)->nullable();
+            $table->unsignedBigInteger('tingkat_id');
             $table->timestamps();
+            $table->foreign('tingkat_id')->references('id')->on('tingkats')->onDelete('cascade');
         });
     }
 
@@ -27,6 +30,6 @@ class CreateTingkatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tingkats');
+        Schema::dropIfExists('peserta_didiks');
     }
 }
