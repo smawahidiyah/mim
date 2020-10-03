@@ -53,6 +53,18 @@
                   <p>Peserta Didik</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{route('saldo')}}" class="nav-link {{ request()->is('saldo') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Saldo</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('transaksi')}}" class="nav-link {{ request()->is('transaksi') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Transaksi</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">

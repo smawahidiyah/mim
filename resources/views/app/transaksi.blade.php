@@ -8,7 +8,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form class="form-horizontal" action="{{route('storepesertadidik')}}" method="post">
+              <form class="form-horizontal" action="{{route('storetransaksi')}}" method="post">
                 @csrf
                 <div class="card-body">
                   <div class="form-group row">
@@ -20,16 +20,9 @@
                     </select>
                   </div>
                   <div class="form-group row">
-                    <label for="nipd" class="col-sm-2 col-form-label">NIPD</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="nipd" placeholder="NIPD" name="nipd">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="namapd" class="col-sm-2 col-form-label">Nama Peserta Didik</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="namapd" placeholder="Nama" name="namapd">
-                    </div>
+                    <label for="pesertadidik_id" class="col-sm-2 col-form-label">Nama Peserta Didik</label>
+                    <select class="col form-control" id="pesertadidik_id" placeholder="Tingkat" name="pesertadidik_id">
+                    </select>
                   </div>
                 </div>
                 <!-- /.card-body -->
@@ -41,4 +34,33 @@
               </form>
             </div>
             <!-- /.card -->
+@endsection
+
+@section('script')
+<script>
+    $('#tingkat_id').change(function(){
+    var tingkat_id = $(this).val();
+    if(tingkat_id){
+        $.ajax({
+           type:"get",
+           url:"{{url('getPesertaDidik')}}?tingkat_id="+tingkat_id,
+           success:function(res){
+            if(res){
+                $("#pesertadidik_id").empty();
+                $("#pesertadidik_id").append('<option>Select</option>');
+                $.each(res,function(key,value){
+                    $("#pesertadidik_id").append('<option value="'+key+'">'+value+'</option>');
+                });
+
+            }else{
+               $("#pesertadidik_id").empty();
+            }
+           }
+        });
+    }else{
+        $("#pesertadidik_id").empty();
+        $("#city").empty();
+    }
+   });
+</script>
 @endsection

@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\PesertaDidik;
+use App\Models\PesertaDidik;
+use App\Models\Tingkat;
 
 class PesertaDidikController extends Controller
 {
     public function pesertadidik()
     {
-    	return view('app.pesertadidik');
+        $tingkats = Tingkat::pluck('tingkat', 'id');
+    	return view('app.pesertadidik', compact('tingkats', $tingkats));
+
     }
 
     public function storepesertadidik(Request $request)
     {
+        ddd($request);
     	$store = new PesertaDidik;
     	$store->tingkat_id = $request->tingkat_id;
     	$store->namapd = $request->namapd;

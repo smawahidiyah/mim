@@ -8,27 +8,21 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form class="form-horizontal" action="{{route('storepesertadidik')}}" method="post">
+              <form class="form-horizontal" action="{{route('storesaldo')}}" method="post">
                 @csrf
                 <div class="card-body">
                   <div class="form-group row">
-                    <label for="tingkat_id" class="col-sm-2 col-form-label">Tingkat</label>
-                    <select class="col form-control" id="tingkat_id" placeholder="Tingkat" name="tingkat_id">
-                      @foreach($tingkats as $id => $tingkat )
-                      <option value="{{ $id }}">{{$tingkat}}</option>
+                    <label for="pesertadidik_id" class="col-sm-2 col-form-label">Peserta Didik</label>
+                    <select class="col form-control" id="pesertadidik_id" placeholder="pesertadidik_id" name="pesertadidik_id">
+                      @foreach($pesertadidiks as $id => $pesertadidik )
+                      <option value="{{ $id }}">{{ $pesertadidik }}</option>
                       @endforeach
                     </select>
                   </div>
                   <div class="form-group row">
-                    <label for="nipd" class="col-sm-2 col-form-label">NIPD</label>
+                    <label for="saldo" class="col-sm-2 col-form-label">Saldo</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="nipd" placeholder="NIPD" name="nipd">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="namapd" class="col-sm-2 col-form-label">Nama Peserta Didik</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="namapd" placeholder="Nama" name="namapd">
+                      <input type="text" class="form-control" id="saldo" placeholder="Nama" name="saldo">
                     </div>
                   </div>
                 </div>

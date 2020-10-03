@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TingkatController;
 use App\Http\Controllers\PesertaDidikController;
+use App\Http\Controllers\SaldoController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +28,13 @@ Route::get('/tingkat', [TingkatController::class, 'tingkat'])->name('tingkat');
 Route::get('/pesertadidik', [PesertaDidikController::class, 'pesertadidik'])->name('pesertadidik');
 
 Route::post('/storepesertadidik', [PesertaDidikController::class, 'storepesertadidik'])->name('storepesertadidik');
+
+Route::get('/saldo', [SaldoController::class, 'saldo'])->name('saldo');
+
+Route::post('/storesaldo', [SaldoController::class, 'storesaldo'])->name('storesaldo');
+
+Route::get('/transaksi', [TransaksiController::class, 'transaksi'])->name('transaksi');
+
+Route::post('/storetransaksi', [TransaksiController::class, 'storetransaksi'])->name('storetransaksi');
+
+Route::get('/getpesertadidik/{tingkat_id}', [TransaksiController::class, 'getpesertadidik']);
