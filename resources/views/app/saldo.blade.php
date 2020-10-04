@@ -14,8 +14,8 @@
                   <div class="form-group row">
                     <label for="pesertadidik_id" class="col-sm-2 col-form-label">Peserta Didik</label>
                     <select class="col form-control" id="pesertadidik_id" placeholder="pesertadidik_id" name="pesertadidik_id">
-                      @foreach($pesertadidiks as $pesertadidik )
-                      <option value="{{ $pesertadidik->id }}">{{ $pesertadidik->namapd }}</option>
+                      @foreach($pesertadidiks as $id => $pesertadidik )
+                      <option value="{{ $id }}">{{ $pesertadidik }}</option>
                       @endforeach
                     </select>
                   </div>

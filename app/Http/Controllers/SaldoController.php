@@ -5,14 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pesertadidik;
 use App\Models\Saldo;
-use DB;
 
 class SaldoController extends Controller
 {
     public function saldo()
     {
-        $saldo = Saldo::select('pesertadidik_id')->get();
-        $pesertadidiks = Pesertadidik::whereNotIn('id', $saldo)->select('namapd', 'id')->get();
+        $pesertadidiks = Pesertadidik::pluck('namapd', 'id');
         return view('app.saldo', compact('pesertadidiks', $pesertadidiks));
     }
 

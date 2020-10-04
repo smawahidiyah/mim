@@ -17,6 +17,7 @@ class PesertaDidikController extends Controller
 
     public function storepesertadidik(Request $request)
     {
+        ddd($request);
     	$store = new PesertaDidik;
     	$store->tingkat_id = $request->tingkat_id;
     	$store->namapd = $request->namapd;

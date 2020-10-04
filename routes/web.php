@@ -18,9 +18,8 @@ use App\Http\Controllers\TransaksiController;
 */
 
 Route::get('/', function () {
-    return view('app.beranda');
+    return view('panel.base');
 });
-Route::get('/getsaldo/{pesertadidik_id}', [TransaksiController::class, 'getsaldo']);
 
 Route::post('/storetingkat', [TingkatController::class, 'storetingkat'])->name('storetingkat');
 
@@ -39,5 +38,3 @@ Route::get('/transaksi', [TransaksiController::class, 'transaksi'])->name('trans
 Route::post('/storetransaksi', [TransaksiController::class, 'storetransaksi'])->name('storetransaksi');
 
 Route::get('/getpesertadidik/{tingkat_id}', [TransaksiController::class, 'getpesertadidik']);
-
-
