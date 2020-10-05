@@ -1,4 +1,8 @@
 @extends('panel.base')
+
+@section('css')
+@endsection
+
 @section('content')
 
             <!-- Horizontal Form -->
@@ -13,7 +17,7 @@
                 <div class="card-body">
                   <div class="form-group row">
                     <label for="tingkat_id" class="col-sm-2 col-form-label">Tingkat</label>
-                    <select class="col form-control" id="tingkat_id" placeholder="Tingkat" name="tingkat_id">
+                    <select class="col form-control select2 js-states" id="tingkat_id" placeholder="Tingkat" name="tingkat_id">
                       @foreach($tingkats as $id => $tingkat )
                       <option value="{{ $id }}">{{$tingkat}}</option>
                       @endforeach
@@ -21,8 +25,20 @@
                   </div>
                   <div class="form-group row">
                     <label for="pesertadidik_id" class="col-sm-2 col-form-label">Nama Peserta Didik</label>
-                    <select class="col form-control" id="pesertadidik_id" placeholder="Tingkat" name="pesertadidik_id">
+                    <select class="col form-control select2 js-states" id="pesertadidik_id" placeholder="Nama Peserta Didik" name="pesertadidik_id">
                     </select>
+                  </div>
+                  <div class="form-group row">
+                    <label for="saldo" class="col-sm-2 col-form-label">Saldo</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="saldo" name="saldo" value="" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="transaksi" class="col-sm-2 col-form-label">Transaksi</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="transaksi" name="transaksi">
+                    </div>
                   </div>
                 </div>
                 <!-- /.card-body -->
@@ -36,31 +52,43 @@
             <!-- /.card -->
 @endsection
 
-@section('script')
-<script>
-    $('#tingkat_id').change(function(){
-    var tingkat_id = $(this).val();
-    if(tingkat_id){
-        $.ajax({
-           type:"get",
-           url:"{{url('getPesertaDidik')}}?tingkat_id="+tingkat_id,
-           success:function(res){
-            if(res){
-                $("#pesertadidik_id").empty();
-                $("#pesertadidik_id").append('<option>Select</option>');
-                $.each(res,function(key,value){
-                    $("#pesertadidik_id").append('<option value="'+key+'">'+value+'</option>');
-                });
+@section('js')
+@endsection
 
-            }else{
-               $("#pesertadidik_id").empty();
+@section('script')
+
+<script>
+    $(function() {
+        $('select[name="tingkat_id"]').on('change', function () {
+            var PDID = $(this).val();
+
+            if (PDID) {
+                $.get('getpesertadidik/' + PDID, function(data) {
+                    $('select[name="pesertadidik_id"]').empty();
+
+                    $.each(data,function(key, value) {
+                        $('select[name="pesertadidik_id"]').append('<option value="' + key + '">' + value + '</option>');
+                    });
+                }, 'json');
+            } else {
+                $('select[name="pesertadidik_id"]').empty();
             }
-           }
         });
-    }else{
-        $("#pesertadidik_id").empty();
-        $("#city").empty();
-    }
-   });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+          $('select[name="pesertadidik_id"]').on("change", function() {
+              var pesertadidik_id = $(this).val();
+              if (pesertadidik_id) {
+                $.get('getsaldo/' + pesertadidik_id, function(data){
+                  $('input[name="saldo"]').empty();
+                  $.each(data, function(x, y){
+                    $('input[name="saldo"]').val(y);
+                  });
+                })
+              }
+          });
+        });
 </script>
 @endsection
